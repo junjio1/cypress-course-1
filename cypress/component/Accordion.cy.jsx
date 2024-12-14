@@ -1,4 +1,4 @@
-import { default as ItemsAccordion } from "../../cypress-course/app/components/Accordion";
+import { default as ItemsAccordion } from "@/app/components/Accordion";
 
 const items = [
   {
@@ -30,7 +30,7 @@ const items = [
 
 describe('Accordion.cy.jsx', () => {
   it('items accordion', () => {
-    cy.mount(<ItemsAccordion items={[items]}/>)
+    cy.mount(<ItemsAccordion items={items}/>)
   })
 })
 
