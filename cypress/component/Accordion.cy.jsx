@@ -1,4 +1,4 @@
-import { default as ItemsAccordion } from "../../cypress-course/app/components/Accordion";
+import { default as ItemsAccordion } from "@/app/components/Accordion";
 
 const items = [
   {
@@ -30,7 +30,16 @@ const items = [
 
 describe('Accordion.cy.jsx', () => {
   it('items accordion', () => {
-    cy.mount(<ItemsAccordion items={[items]}/>)
+    cy.mount(<ItemsAccordion items={items}/>)
+    cy.getDataTest('accordion-wrapper').within(() => {
+      cy.get('[data-test^="accordion-item"]').should('have.length', 3)
+    })
+
+    cy.contains('Your tests will exist in a describe block.').should('not.be.visible')
+    cy.getDataTest('accordion-item-1').within(() => cy.get('[role=button]').click())
+    cy.contains('Your tests will exist in a describe block.').should('be.visible')
+    cy.getDataTest('accordion-item-1').within(() => cy.get('[role=button]').click())
+    cy.contains('Your tests will exist in a describe block.').should('not.be.visible')
   })
 })
 
